@@ -18,7 +18,7 @@ function update(dt, cameraIndex)
   -- Get AC camera parameters with some corrections to be somewhat compatible:
   local carForces = ac.getCarGForces()
   local cameraParameters = ac.getCameraParameters(cameraIndex)
-  local camConfigDistance = cameraParameters.distance + 2.50 + math.clamp(carForces.z / 2, -0.5, 5)
+  local camConfigDistance = cameraParameters.distance + 2.50 - math.clamp(carForces.z / 2, -3, 3)
   local height = cameraParameters.height
   local pitchAngle = cameraParameters.pitch
 
