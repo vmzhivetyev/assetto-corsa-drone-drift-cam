@@ -46,14 +46,17 @@ function update(dt, cameraIndex)
 
   ---- Lerp cam position
 
+  local raise = math.clamp((distanceToCar - 6) / 3, 0, 30)
+  local speedup = math.clamp((distanceToCar - 30) / 3, 0, 60)
+
   local targetCamPos = carPos
     + carVelocityDir * camConfigDistance * 2
     + carVelocityDir * distanceOffset
-    + vec3(0, height, 0)
+    + vec3(0, height - 0.5 + raise, 0)
 
-  local posChange = math.lerp(ac.Camera.position, targetCamPos, dt * 5) - ac.Camera.position
-  posChangeLen = #posChange
-  posChange = posChange:normalize() * math.clamp(posChangeLen, 0, (carVelocityLen + 10) * dt)
+  local posChange = math.lerp(ac.Camera.position, targetCamPos, dt * (2 + carVelocityLen / 15)) - ac.Camera.position
+  local posChangeLen = #posChange
+  posChange = posChange:normalize() * math.clamp(posChangeLen, 0, (carVelocityLen + 20 + speedup) * dt)
   ac.Camera.position = ac.Camera.position + posChange
 
   ---- Look
