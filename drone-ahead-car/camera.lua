@@ -28,14 +28,15 @@ function update(dt, cameraIndex)
   local carUp = ac.getCarUp()
   local carRight = math.cross(carDir, carUp):normalize()
 
-  if lastCarPos ~= carPos then
-    local delta = lastCarPos - carPos
-    local deltaLength = #delta
-    if deltaLength > 5 then delta = delta / deltaLength * 5 end
-    carVelocity:update(-delta / dt)
-    lastCarPos = carPos
+  if lastCarPos == carPos then
+  	return
   end
 
+  local delta = lastCarPos - carPos
+  local deltaLength = #delta
+  if deltaLength > 5 then delta = delta / deltaLength * 5 end
+  carVelocity:update(-delta / dt)
+  lastCarPos = carPos
   local carVelocityDir = math.normalize(carVelocity.val)
 
   local distanceToCar = #(carPos - ac.Camera.position)
