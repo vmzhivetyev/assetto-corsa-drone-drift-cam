@@ -37,10 +37,12 @@ function update(dt, cameraIndex)
   if deltaLength > 5 then delta = delta / deltaLength * 5 end
   carVelocity:update(-delta / dt)
   lastCarPos = carPos
+
   local carVelocityDir = math.normalize(carVelocity.val)
+  local carVelocityLen = #carVelocity.val
 
   local distanceToCar = #(carPos - ac.Camera.position)
-  local distanceOffset = math.clamp(distanceToCar - 7, 0, 7)
+  local distanceOffset = math.clamp(distanceToCar - 7, 0, 7) + carVelocityLen / 10
 
   ---- Lerp cam position
 
@@ -51,7 +53,6 @@ function update(dt, cameraIndex)
 
   local posChange = math.lerp(ac.Camera.position, targetCamPos, dt * 5) - ac.Camera.position
   posChangeLen = #posChange
-  carVelocityLen = #carVelocity.val
   posChange = posChange:normalize() * math.clamp(posChangeLen, 0, (carVelocityLen + 10) * dt)
   ac.Camera.position = ac.Camera.position + posChange
 
