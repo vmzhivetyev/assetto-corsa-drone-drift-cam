@@ -2,6 +2,19 @@
 ###### [ WORK IN PROGRESS ]
 Chase camera script for Assetto Corsa simulating a drone flying ahead of car.
 
+# Usage
+
+1) Place folders `drone-close-ahead` and `drone-far-behind` to `assettocorsa\extension\lua\chaser-camera`
+2) Go to `Content Manager -> Settings -> CUSTOM SHADER PATCH -> Chaser Camera`
+    3) Tick `Active`
+    4) Change `Script Used` value to the one you want
+3) Go to `Content Manager -> Settings -> ASSETTO CORSA -> Chase Camera`
+    3) Set `Distance` to 3m and  3.9m for cameras respectively
+    4) Set `Height` to 1.4m and 1.9m for cameras respectively
+4) In game select chase camera (cycle cameras using F1 key)
+
+# Demo
+
 ## Drifting demo
 Commit 6309288f75e2fdf4bbb9bab754d62e42a045d805
 
